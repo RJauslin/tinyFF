@@ -1,0 +1,14 @@
+Package: tinyFF
+Type: Package
+Title: What the Package Does in One 'Title Case' Line
+Version: 1.0
+Date: 2021-07-05
+Author: Your Name
+Maintainer: Your Name <your@email.com>
+Description: One paragraph description of what the package does as one or more full sentences.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.6), RcppParallel (>= 5.0.2), RcppArmadillo
+LinkingTo: Rcpp, RcppParallel, RcppArmadillo
+Depends: Matrix, R (>= 3.5.0)
+SystemRequirements: GNU make
+RoxygenNote: 7.1.1
