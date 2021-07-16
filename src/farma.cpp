@@ -20,10 +20,10 @@ public:
     B = obj.B;
     pik = obj.pik;
   }
-    
+  
   //GET and SET
   arma::mat getB(){
-   return(B); 
+    return(B); 
   }
   arma::vec getpik(){
     return(pik);
@@ -123,25 +123,27 @@ arma::vec farma(const arma::mat& X,
   // unsigned int nthreads = 3;
   arma::uvec i = arma::find(pik > EPS && pik < (1-EPS), nthreads*(J+1), "first"); // find first index of B
   // arma::mat B = (A.rows(i)).t(); // extract B of A
-
+  
   
   while(i.size() > 0){
-   arma::uvec p = arma::find(pik > EPS && pik < (1-EPS)); // find first index of B 
-   // std::cout << p.size() << std::endl;
-  // while(step < 1){
+    arma::uvec p = arma::find(pik > EPS && pik < (1-EPS)); // find first index of B
+    std::cout << p.size() << std::endl;
+    // while(step < 1){
     
     arma::mat A_tmp(X.n_cols,J+1);
     
     if(i.size() <  nthreads*(J+1) && nthreads > 1){
       nthreads--;
-    }else if(i.size() < (J+1)){
+    }
     
-    // if(i.size() < nthreads*(J+1) ){
-    //   
+    if(i.size() < (J+1)){
+      
+      // if(i.size() < nthreads*(J+1) ){
+      //   
       arma::uvec i_tmp;
-    //   if(i.size() < (J+1)){
-        A_tmp.resize(X.n_cols, i.size());
-        i_tmp = i;
+      //   if(i.size() < (J+1)){
+      A_tmp.resize(X.n_cols, i.size());
+      i_tmp = i;
       // }else{
       //   
       //   // std::cout << J << std::endl;
@@ -183,8 +185,8 @@ arma::vec farma(const arma::mat& X,
       // onestepf((A.rows(i.subvec(0,J))).t(),pik_tmp);
       // pik.elem(i.subvec(0,J)) = pik_tmp;
     }else{
-
-
+      
+      
       std::vector<arma::uvec> i_tmp;
       std::vector<std::thread> threads;
       std::vector<Block> B;
@@ -192,19 +194,19 @@ arma::vec farma(const arma::mat& X,
       B.reserve(nthreads);
       i_tmp.reserve(nthreads);
       threads.reserve(nthreads);
-
+      
       for(int k = 0; k < nthreads; ++k){
         i_tmp.push_back(i.subvec(k*(J+1),(k+1)*J + k));
       }
       for(int k = 0; k < nthreads; ++k){
         
         // for(int s = 0; s < i_tmp[k].size(); s++){
-          // std::cout << i_tmp[k][s] << std::endl;
+        // std::cout << i_tmp[k][s] << std::endl;
         // }
-
+        
         // std::cout << i_tmp[k].size() << std::endl;
         // std::cout << X.n_cols <<std::endl;
-  
+        
         // arma::mat A_tmp(X.n_cols,i_tmp[k].size());
         for(int r = 0;r < X.n_cols; r++){
           for(int s = 0; s < i_tmp[k].size(); s++){
@@ -225,7 +227,7 @@ arma::vec farma(const arma::mat& X,
       // for (it = B.begin(); it != B.end(); ++it) {
       //   std::cout << (*it).getpik();
       // }
-
+      
       
       for (std::thread & th : threads){
         // If thread Object is Joinable then Join that thread.
@@ -238,33 +240,19 @@ arma::vec farma(const arma::mat& X,
       }
       
     }
-   
     
-    
-   
     
     
     i = arma::find(pik > EPS && pik < (1-EPS), nthreads*(J+1), "first");
     
     
     
-    // B = (A.rows(i)).t();
-    // std::cout << B << std::endl;
-    // if(i.size() < (J+1)){
-      // arma::mat kern = arma::null((A.rows(i)).t());
-      // arma::mat kern = arma::null(A_tmp);
-      // if(kern.empty()){
-      //   break;
-      // }
-    // }
-    // step++;
   }
   return(pik);
 }
 
 
 /*** R
-
 rm(list = ls())
 N = 5000
 n = 100
@@ -272,15 +260,9 @@ p = 50
 pik= sampling::inclusionprobabilities(runif(N),n)
 X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
 A=X/pik
-
 system.time(s <- farma(X,pik,25))
 system.time(flightphase_arma4(X,pik))
-
-
 system.time(s <- BalancedSampling::flightphase(pik,X))
 system.time(s <- tinyFF::flightphase(pik,X))
-
-
-
 sum(s)
 */

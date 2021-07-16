@@ -112,7 +112,14 @@ void put01(arma::uword& done,
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericVector flightphase_arma4(const arma::mat& X,arma::vec pik,double EPS=0.0000001){
+Rcpp::NumericVector flightphase_arma4(Rcpp::NumericMatrix Xr,
+                                      Rcpp::NumericVector pikr,
+                                      double EPS=0.0000001){
+// Rcpp::NumericVector flightphase_arma4(const arma::mat& X,arma::vec pik,double EPS=0.0000001){
+
+
+  arma::mat X(Xr.begin(),Xr.nrow(),Xr.ncol(),false);
+  arma::vec pik(pikr.begin(),pikr.size(),false);
   
   // ncol and nrow
   arma::uword N = X.n_rows;

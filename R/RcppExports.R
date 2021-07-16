@@ -24,6 +24,33 @@
 #' @examples
 #'
 #' @export
+parma <- function(X, pik, nthreads, EPS = 0.0000001) {
+    .Call(`_tinyFF_parma`, X, pik, nthreads, EPS)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
 cube <- function(prob, Xbal) {
     .Call(`_tinyFF_cube`, prob, Xbal)
 }
@@ -301,8 +328,34 @@ put01 <- function(done, size, index, pik) {
 #' func
 #'
 #' @export
-flightphase_arma4 <- function(X, pik, EPS = 0.0000001) {
-    .Call(`_tinyFF_flightphase_arma4`, X, pik, EPS)
+flightphase_arma4 <- function(Xr, pikr, EPS = 0.0000001) {
+    .Call(`_tinyFF_flightphase_arma4`, Xr, pikr, EPS)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#'
+#' @export
+test <- function() {
+    .Call(`_tinyFF_test`)
 }
 
 #' @title title
@@ -329,5 +382,36 @@ flightphase_arma4 <- function(X, pik, EPS = 0.0000001) {
 #' @export
 tinyFF <- function(X, pik, EPS = 0.0000001) {
     invisible(.Call(`_tinyFF_tinyFF`, X, pik, EPS))
+}
+
+parallelVectorSum <- function(x) {
+    .Call(`_tinyFF_parallelVectorSum`, x)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+mainW <- function() {
+    .Call(`_tinyFF_mainW`)
 }
 
