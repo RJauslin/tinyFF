@@ -288,6 +288,48 @@ farma <- function(X, pik, nthreads, EPS = 0.0000001) {
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
+#' @seealso
+#' func
+#'
+#'
+#' @export
+flightphase_arma_2 <- function(X, pik, EPS = 0.0000001) {
+    .Call(`_tinyFF_flightphase_arma_2`, X, pik, EPS)
+}
+
+#' @title blab
+#'
+#' @description skjdfng
+#'
+#' @return A vector
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#' @export
+parallelffphase_2 <- function(X, pik) {
+    .Call(`_tinyFF_parallelffphase_2`, X, pik)
+}
+
+qfromw <- function(w, n) {
+    .Call(`_tinyFF_qfromw`, w, n)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
 #'
 #'
 #' @export
@@ -330,6 +372,14 @@ put01 <- function(done, size, index, pik) {
 #' @export
 flightphase_arma4 <- function(Xr, pikr, EPS = 0.0000001) {
     .Call(`_tinyFF_flightphase_arma4`, Xr, pikr, EPS)
+}
+
+greet <- function() {
+    invisible(.Call(`_tinyFF_greet`))
+}
+
+test2 <- function() {
+    .Call(`_tinyFF_test2`)
 }
 
 #' @title title

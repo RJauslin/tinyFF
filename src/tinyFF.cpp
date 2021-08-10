@@ -1,5 +1,7 @@
 #include <RcppArmadillo.h>
 #include <RcppParallel.h>
+#include <RcppThread.h>
+
 
 using namespace Rcpp;
 using namespace RcppParallel;

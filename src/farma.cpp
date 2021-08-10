@@ -3,6 +3,7 @@
 #include <thread>
 #include <stdlib.h> 
 
+#include <RcppThread.h>
 // std::mutex m2;//you can use std::lock_guard if you want to be exception safe
 
 
@@ -127,7 +128,7 @@ arma::vec farma(const arma::mat& X,
   
   while(i.size() > 0){
     arma::uvec p = arma::find(pik > EPS && pik < (1-EPS)); // find first index of B
-    std::cout << p.size() << std::endl;
+    RcppThread::Rcout << p.size() << std::endl;
     // while(step < 1){
     
     arma::mat A_tmp(X.n_cols,J+1);

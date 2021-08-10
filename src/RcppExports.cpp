@@ -143,6 +143,43 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// flightphase_arma_2
+arma::vec flightphase_arma_2(const arma::mat& X, arma::vec pik, double EPS);
+RcppExport SEXP _tinyFF_flightphase_arma_2(SEXP XSEXP, SEXP pikSEXP, SEXP EPSSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type pik(pikSEXP);
+    Rcpp::traits::input_parameter< double >::type EPS(EPSSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphase_arma_2(X, pik, EPS));
+    return rcpp_result_gen;
+END_RCPP
+}
+// parallelffphase_2
+arma::vec parallelffphase_2(const arma::mat X, const arma::vec pik);
+RcppExport SEXP _tinyFF_parallelffphase_2(SEXP XSEXP, SEXP pikSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::vec >::type pik(pikSEXP);
+    rcpp_result_gen = Rcpp::wrap(parallelffphase_2(X, pik));
+    return rcpp_result_gen;
+END_RCPP
+}
+// qfromw
+NumericMatrix qfromw(NumericVector& w, int& n);
+RcppExport SEXP _tinyFF_qfromw(SEXP wSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< int& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(qfromw(w, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // onestep3
 void onestep3(arma::vec& pik, arma::vec u, double EPS);
 RcppExport SEXP _tinyFF_onestep3(SEXP pikSEXP, SEXP uSEXP, SEXP EPSSEXP) {
@@ -178,6 +215,25 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type pikr(pikrSEXP);
     Rcpp::traits::input_parameter< double >::type EPS(EPSSEXP);
     rcpp_result_gen = Rcpp::wrap(flightphase_arma4(Xr, pikr, EPS));
+    return rcpp_result_gen;
+END_RCPP
+}
+// greet
+void greet();
+RcppExport SEXP _tinyFF_greet() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    greet();
+    return R_NilValue;
+END_RCPP
+}
+// test2
+std::vector<double> test2();
+RcppExport SEXP _tinyFF_test2() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(test2());
     return rcpp_result_gen;
 END_RCPP
 }
@@ -236,9 +292,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tinyFF_cubestratified", (DL_FUNC) &_tinyFF_cubestratified, 3},
     {"_tinyFF_lcubestratified", (DL_FUNC) &_tinyFF_lcubestratified, 4},
     {"_tinyFF_farma", (DL_FUNC) &_tinyFF_farma, 4},
+    {"_tinyFF_flightphase_arma_2", (DL_FUNC) &_tinyFF_flightphase_arma_2, 3},
+    {"_tinyFF_parallelffphase_2", (DL_FUNC) &_tinyFF_parallelffphase_2, 2},
+    {"_tinyFF_qfromw", (DL_FUNC) &_tinyFF_qfromw, 2},
     {"_tinyFF_onestep3", (DL_FUNC) &_tinyFF_onestep3, 3},
     {"_tinyFF_put01", (DL_FUNC) &_tinyFF_put01, 4},
     {"_tinyFF_flightphase_arma4", (DL_FUNC) &_tinyFF_flightphase_arma4, 3},
+    {"_tinyFF_greet", (DL_FUNC) &_tinyFF_greet, 0},
+    {"_tinyFF_test2", (DL_FUNC) &_tinyFF_test2, 0},
     {"_tinyFF_test", (DL_FUNC) &_tinyFF_test, 0},
     {"_tinyFF_tinyFF", (DL_FUNC) &_tinyFF_tinyFF, 3},
     {"_tinyFF_parallelVectorSum", (DL_FUNC) &_tinyFF_parallelVectorSum, 1},
